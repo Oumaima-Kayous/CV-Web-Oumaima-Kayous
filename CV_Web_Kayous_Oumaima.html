@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le CV de votre future Cheffe de Projet Junior</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --cream:#faf7f2;--cream2:#f2ede4;--ink:#1a1614;
+  --rose:#c46b72;--rose-light:#e8a0a6;--rose-pale:#f5dfe1;
+  --sage:#7a9e8e;--sage-light:#a8c5b8;
+  --warm:#8b7355;--muted:#9a9088;
+  --border:#e0d8ce;--border-dark:#c8bfb4;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;cursor:none}
+#cur{position:fixed;width:8px;height:8px;background:var(--rose);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+#cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(196,107,114,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .08s}
+body.hov #cur{width:20px;height:20px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.25;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23f)' opacity='.06'/%3E%3C/svg%3E");background-size:180px}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--cream);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity 1s,visibility 1s}
+#loader.out{opacity:0;visibility:hidden}
+.loader-ring{position:relative;width:140px;height:140px}
+.loader-ring svg{width:100%;height:100%;animation:spinR 2s linear infinite}
+@keyframes spinR{to{transform:rotate(360deg)}}
+.loader-ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem}
+#lpct{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--rose);line-height:1}
+.loader-pct-label{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.loader-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--ink)}
+.loader-sub{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase}
+.loader-progress{width:200px;height:1px;background:var(--border);position:relative;overflow:hidden}
+.loader-fill{height:100%;background:linear-gradient(90deg,var(--rose-light),var(--rose));width:0%;transition:width .1s}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--ink);display:grid;grid-template-columns:58% 42%;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(196,107,114,.12) 0%,transparent 65%);top:-200px;left:-100px;animation:drift 12s ease-in-out infinite alternate}
+.hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(122,158,142,.08) 0%,transparent 65%);bottom:-100px;right:100px;animation:drift 16s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(30px,20px)}}
+.hero-left{padding:6rem 5rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.h-eyebrow{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.3em;color:var(--rose-light);text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s .3s both}
+.h-name{font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,6vw,6.5rem);font-weight:700;line-height:.9;letter-spacing:-.02em;color:var(--cream);margin-bottom:1.2rem;opacity:0;animation:fadeUp .9s .5s both}
+.h-name .last{display:block;font-style:italic;color:var(--rose-light)}
+.h-tagline{font-size:.9rem;font-weight:300;color:rgba(250,247,242,.5);line-height:1.7;max-width:380px;margin-bottom:3rem;opacity:0;animation:fadeUp .8s .7s both}
+.h-contacts{display:flex;flex-direction:column;gap:.6rem;opacity:0;animation:fadeUp .7s .9s both}
+.h-contact{display:flex;align-items:center;gap:.8rem;font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(250,247,242,.55)}
+.h-contact-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);flex-shrink:0}
+.hero-right{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.hero-right::before{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--ink),transparent);z-index:2}
+.photo-box{width:300px;height:380px;position:relative;opacity:0;animation:fadeUp .9s .6s both}
+.photo-box img,.photo-ph{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.photo-ph{background:linear-gradient(160deg,#2a2020,#1a1614);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;border:1px solid rgba(196,107,114,.2)}
+.photo-ph svg{opacity:.25}
+.photo-ph-t{font-family:'Space Mono',monospace;font-size:.5rem;color:rgba(196,107,114,.5);letter-spacing:.18em;text-transform:uppercase;text-align:center;line-height:2}
+.photo-box::before,.photo-box::after{content:'';position:absolute;width:22px;height:22px;z-index:3}
+.photo-box::before{top:-6px;left:-6px;border-top:1.5px solid var(--rose-light);border-left:1.5px solid var(--rose-light)}
+.photo-box::after{bottom:-6px;right:-6px;border-bottom:1.5px solid var(--sage);border-right:1.5px solid var(--sage)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* STATS STRIP */
+.stats-strip{background:var(--rose);padding:1.6rem 5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.stat-item{text-align:center;flex:1}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--cream);line-height:1}
+.stat-l{font-family:'Space Mono',monospace;font-size:.52rem;color:rgba(250,247,242,.7);letter-spacing:.15em;text-transform:uppercase;margin-top:.2rem}
+.stat-div{width:1px;height:36px;background:rgba(250,247,242,.25)}
+
+/* SECTIONS */
+.section{padding:6vw 8vw;border-top:1px solid var(--border)}
+.section.dark{background:var(--ink);border-color:rgba(255,255,255,.06)}
+.sec-label{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.28em;color:var(--rose);text-transform:uppercase;margin-bottom:.7rem}
+.sec-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5.5rem);font-weight:700;line-height:.95;color:var(--ink);margin-bottom:3.5rem}
+.section.dark .sec-heading{color:var(--cream)}
+
+/* ABOUT DNA */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;position:relative;z-index:1}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;font-style:italic;color:var(--ink);line-height:1.4;margin-bottom:2rem}
+.about-quote span{color:var(--rose);font-weight:600}
+.about-line{width:48px;height:2px;background:var(--rose);margin-bottom:2rem}
+.dna-row{display:grid;grid-template-columns:42px 1fr;gap:1.5rem;align-items:start;padding:1.5rem 0;border-bottom:1px solid var(--border)}
+.dna-row:last-child{border-bottom:none}
+.dna-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.dna-title{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.3rem}
+.dna-text{font-size:.85rem;color:var(--ink);line-height:1.6}
+
+/* EXPERIENCE */
+.exp-block{display:grid;grid-template-columns:220px 1fr;gap:3rem;margin-bottom:3rem;align-items:start}
+.exp-meta .ep{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.16em;color:var(--rose);text-transform:uppercase;margin-bottom:.35rem}
+.exp-meta .ec{font-size:.74rem;color:var(--muted);line-height:1.55}
+.exp-role{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;line-height:1;color:var(--cream);margin-bottom:.25rem}
+.exp-role em{font-family:'DM Sans',sans-serif;font-style:normal;font-size:.38em;font-weight:400;color:var(--rose-light);display:block;margin-top:.3em;letter-spacing:.05em;text-transform:uppercase}
+.exp-hl{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;color:rgba(250,247,242,.6);line-height:1.75;border-left:2px solid var(--rose);padding-left:1.3rem;max-width:520px;margin-bottom:.9rem}
+.exp-buls{list-style:none;margin-top:.8rem}
+.exp-buls li{font-size:.76rem;color:rgba(250,247,242,.5);line-height:1.7;padding-left:1rem;position:relative;margin-bottom:.28rem}
+.exp-buls li::before{content:'—';position:absolute;left:0;color:var(--rose);font-size:.65rem}
+.exp-div{border:none;border-top:1px solid rgba(255,255,255,.06);margin:0 0 3rem}
+
+/* PROJECTS GRID */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-dark);border:1px solid var(--border-dark)}
+.proj-cell{background:var(--cream);padding:2rem 1.8rem;cursor:pointer;position:relative;overflow:hidden;transition:background .3s}
+.proj-cell.wide{grid-column:span 2}
+.proj-cell:hover{background:var(--cream2)}
+.proj-cell::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--rose-light));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.proj-cell:hover::before{transform:scaleX(1)}
+.proj-cell:hover .pj-name{color:var(--rose)}
+.pj-idx{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:1.5rem}
+.pj-name{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;line-height:.95;color:var(--ink);margin-bottom:.45rem;transition:color .3s}
+.pj-stack{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.06em;color:var(--rose);margin-bottom:.6rem}
+.pj-desc{font-size:.76rem;color:var(--muted);line-height:1.65;margin-bottom:1rem}
+.pj-cta{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;color:var(--rose);text-transform:uppercase;display:flex;align-items:center;gap:.35rem;transition:gap .2s}
+.proj-cell:hover .pj-cta{gap:.65rem}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+.sk-group{margin-bottom:2.5rem}
+.sk-label{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;margin-bottom:1.1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.sk-row{display:flex;align-items:center;gap:1rem;margin-bottom:.85rem}
+.sl-name{font-size:.84rem;font-weight:500;color:var(--ink);width:170px;flex-shrink:0}
+.sl-bar{flex:1;height:2px;background:var(--border);position:relative;border-radius:1px}
+.sl-fill{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,var(--rose),var(--rose-light));border-radius:1px;transform:scaleX(0);transform-origin:left;transition:transform 1.3s cubic-bezier(.16,1,.3,1)}
+.sl-fill.on{transform:scaleX(1)}
+.sk-pct{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);width:32px;text-align:right}
+.lang-row{display:flex;align-items:center;gap:1rem;margin-bottom:.9rem}
+.lr-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--ink);width:90px}
+.lr-dots{display:flex;gap:4px}
+.ld{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--border-dark);background:transparent}
+.ld.on{background:var(--sage);border-color:var(--sage)}
+.lr-level{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.soft-wrap{display:flex;flex-wrap:wrap;gap:.5rem}
+.soft-tag{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.06em;padding:.32rem .85rem;border:1px solid var(--border-dark);color:var(--warm);cursor:pointer;transition:all .25s;background:transparent}
+.soft-tag:hover,.soft-tag.active{background:var(--rose-pale);border-color:var(--rose);color:var(--rose)}
+.soft-popup{display:none;margin-top:1rem;padding:1rem 1.3rem;background:var(--rose-pale);border-left:2px solid var(--rose);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.92rem;color:var(--ink);line-height:1.7}
+.soft-popup.show{display:block}
+.edu-card{padding:1.4rem 1.8rem;border:1.5px solid var(--border);background:var(--cream);transition:border-color .3s,transform .3s;cursor:default;margin-bottom:.8rem}
+.edu-card:hover{border-color:var(--rose);transform:translateX(5px)}
+.edu-p{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.14em;color:var(--rose);text-transform:uppercase;margin-bottom:.35rem}
+.edu-d{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+.edu-s{font-size:.75rem;color:var(--muted)}
+
+/* CTA */
+.cta-section{background:var(--ink);min-height:50vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-top:1px solid var(--border);position:relative;overflow:hidden;padding:8vw}
+.cta-section::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(196,107,114,.08) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.12)}}
+.cta-pre{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.3em;color:var(--rose-light);text-transform:uppercase;margin-bottom:1.5rem;position:relative;z-index:1}
+.cta-h{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:700;font-style:italic;color:var(--cream);line-height:.95;margin-bottom:2rem;position:relative;z-index:1}
+.cta-h span{color:var(--rose-light)}
+.postes{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin-bottom:2.5rem;position:relative;z-index:1}
+.poste{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.09em;padding:.32rem .85rem;border:1px solid rgba(196,107,114,.3);color:rgba(232,160,166,.7);cursor:default;transition:all .2s}
+.poste:hover{border-color:var(--rose-light);color:var(--rose-light)}
+.cta-links{display:flex;gap:2.5rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1}
+.cta-a{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.14em;color:var(--cream);text-decoration:none;text-transform:uppercase;padding-bottom:.25rem;border-bottom:1px solid var(--rose);transition:color .2s}
+.cta-a:hover{color:var(--rose-light)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.reveal.on{opacity:1;transform:none}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(10,8,8,.92);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s;padding:2rem;backdrop-filter:blur(14px)}
+.modal-ov.open{opacity:1;visibility:visible}
+.modal-ov.open .mbox{transform:translateY(0) scale(1);opacity:1}
+.mbox{width:min(960px,96vw);max-height:93vh;background:#0b0b0b;border:1px solid rgba(196,107,114,.2);position:relative;overflow:hidden;transform:translateY(50px) scale(.97);opacity:0;transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .5s;display:flex;flex-direction:column}
+.mcl{position:absolute;top:1.2rem;right:1.2rem;width:32px;height:32px;border:1px solid rgba(196,107,114,.3);background:transparent;color:var(--rose-light);cursor:pointer;font-size:.8rem;z-index:20;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.mcl:hover{background:rgba(196,107,114,.15);border-color:var(--rose)}
+
+/* PROTO SCENE */
+.proto-scene{width:100%;height:280px;background:var(--cream2);position:relative;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+.proto-scene::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,107,114,.1) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.ps-blob{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none}
+.ps-scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(196,107,114,.25) 50%,transparent 95%);animation:psScan 3.5s ease-in-out infinite;pointer-events:none;z-index:5}
+@keyframes psScan{0%{top:5%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:92%;opacity:0}}
+.ps-br{position:absolute;width:16px;height:16px;z-index:6}
+.ps-br.tl{top:10px;left:10px;border-top:1px solid rgba(196,107,114,.5);border-left:1px solid rgba(196,107,114,.5)}
+.ps-br.tr{top:10px;right:10px;border-top:1px solid rgba(196,107,114,.5);border-right:1px solid rgba(196,107,114,.5)}
+.ps-br.bl{bottom:10px;left:10px;border-bottom:1px solid rgba(196,107,114,.5);border-left:1px solid rgba(196,107,114,.5)}
+.ps-br.br2{bottom:10px;right:10px;border-bottom:1px solid rgba(196,107,114,.5);border-right:1px solid rgba(196,107,114,.5)}
+.ps-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.25em;color:rgba(196,107,114,.4);text-transform:uppercase;z-index:6;white-space:nowrap}
+.fw{animation:fwFloat 6s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(0,0,0,.12))}
+.fw2{animation:fwFloat 7s ease-in-out infinite;animation-delay:.8s;filter:drop-shadow(0 16px 30px rgba(0,0,0,.1))}
+@keyframes fwFloat{0%,100%{transform:perspective(900px) rotateY(-5deg) rotateX(2deg) translateY(0)}50%{transform:perspective(900px) rotateY(4deg) rotateX(-2deg) translateY(-8px)}}
+.gw{background:#fff;border:1.5px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:0 4px 20px rgba(26,22,20,.08)}
+.gtb{background:var(--ink);padding:.4rem .8rem;display:flex;align-items:center;justify-content:space-between}
+.gtb-dots{display:flex;gap:.28rem}
+.gtb-dot{width:7px;height:7px;border-radius:50%}
+.gtb-title{font-family:'Space Mono',monospace;font-size:.42rem;letter-spacing:.08em;color:rgba(250,247,242,.55)}
+.gt-head{display:grid;padding:.26rem .7rem;background:var(--cream2);font-family:'Space Mono',monospace;font-size:.38rem;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)}
+.gt-row{display:grid;padding:.3rem .7rem;border-bottom:1px solid var(--border);font-family:'Space Mono',monospace;font-size:.42rem;color:var(--ink);align-items:center}
+.gt-row:last-child{border-bottom:none}
+.sp{font-family:'Space Mono',monospace;font-size:.38rem;padding:.1rem .38rem;border-radius:2px}
+.sp-g{background:#e8f5e9;color:#2e7d32}
+.sp-r{background:#fce4ec;color:#c62828}
+.sp-o{background:#fff3e0;color:#e65100}
+.sp-p{background:var(--rose-pale);color:var(--rose)}
+.mc2{padding:.5rem .6rem;border-right:1px solid var(--border);text-align:center}
+.mc2:last-child{border-right:none}
+.mc2-n{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;line-height:1}
+.mc2-l{font-family:'Space Mono',monospace;font-size:.34rem;color:var(--muted);letter-spacing:.06em;margin-top:.1rem}
+.snav{width:115px;border-right:1px solid var(--border);background:var(--cream2);flex-shrink:0}
+.snav-item{font-family:'Space Mono',monospace;font-size:.4rem;padding:.3rem .6rem;color:var(--muted);border-left:2px solid transparent}
+.snav-item.a{background:var(--rose-pale);color:var(--rose);border-left-color:var(--rose)}
+
+/* MODAL CONTENT */
+.mc{padding:2.2rem 2.8rem 2.8rem;overflow-y:auto;flex:1}
+.mc-sector{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.24em;color:var(--rose-light);text-transform:uppercase;margin-bottom:.45rem}
+.mc-title{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--cream);line-height:.95;margin-bottom:.35rem}
+.mc-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:rgba(250,247,242,.35);margin-bottom:1.6rem}
+.mc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;margin-bottom:1.8rem}
+.mc-stat{text-align:center;padding:.8rem;border:1px solid rgba(196,107,114,.12);background:rgba(196,107,114,.03)}
+.mc-n{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--rose-light);line-height:1}
+.mc-l{font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.15em;color:rgba(250,247,242,.3);text-transform:uppercase;margin-top:.2rem}
+.mc-body{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.mc-bt{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.2em;color:rgba(250,247,242,.3);text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.45rem;border-bottom:1px solid rgba(255,255,255,.05)}
+.mc-txt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;color:rgba(250,247,242,.55);line-height:1.8;margin-bottom:.9rem}
+.mc-buls{list-style:none}
+.mc-buls li{font-size:.74rem;color:rgba(250,247,242,.45);line-height:1.7;padding-left:.9rem;position:relative;margin-bottom:.25rem}
+.mc-buls li::before{content:'—';position:absolute;left:0;color:var(--rose);font-size:.6rem}
+.mc-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.mchip{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.05em;padding:.22rem .6rem;border:1px solid rgba(196,107,114,.15);color:rgba(250,247,242,.4)}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-r"></div>
+<div class="grain"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-ring">
+    <svg viewBox="0 0 140 140" fill="none">
+      <circle cx="70" cy="70" r="60" stroke="#e0d8ce" stroke-width="1"/>
+      <circle cx="70" cy="70" r="60" stroke="url(#lg)" stroke-width="1.5" stroke-dasharray="377" stroke-dashoffset="280" stroke-linecap="round"/>
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="140" y2="140" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c46b72"/><stop offset="100%" stop-color="#e8a0a6"/></linearGradient></defs>
+    </svg>
+    <div class="loader-ring-center">
+      <div id="lpct">0</div>
+      <div class="loader-pct-label">chargement</div>
+    </div>
+  </div>
+  <div class="loader-name">Oumaima Kayous</div>
+  <div class="loader-sub">Chef de Projet · Innovation · Transformation Digitale</div>
+  <div class="loader-progress"><div class="loader-fill" id="lfill"></div></div>
+</div>
+
+
+<!-- ═══ MODAL SAFRONDE ═══ -->
+<div class="modal-ov" id="m-sf">
+  <div class="mbox">
+    <button class="mcl" onclick="closeM('sf')">✕</button>
+    <div class="proto-scene" style="background:var(--cream2);">
+      <div class="ps-blob" style="width:300px;height:300px;background:radial-gradient(circle,rgba(196,107,114,.1) 0%,transparent 65%);top:-80px;left:-60px;"></div>
+      <div class="ps-scan"></div>
+      <div class="ps-br tl"></div><div class="ps-br tr"></div><div class="ps-br bl"></div><div class="ps-br br2"></div>
+      <div style="position:relative;z-index:10;display:flex;gap:1.4rem;align-items:flex-start;">
+        <div class="fw">
+          <div class="gw" style="width:330px;">
+            <div class="gtb"><div class="gtb-dots"><div class="gtb-dot" style="background:var(--rose)"></div><div class="gtb-dot" style="background:#e8c547"></div><div class="gtb-dot" style="background:var(--sage)"></div></div><div class="gtb-title">SafRonde · Journal des rondes de sécurité</div><div></div></div>
+            <div style="display:flex;border-bottom:1px solid var(--border);background:var(--cream2);">
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--rose);border-bottom:2px solid var(--rose);background:#fff;">Rondes du jour</div>
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--muted);">Agents</div>
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--muted);">Journal accès</div>
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--muted);">Rapports</div>
+            </div>
+            <div class="gt-head" style="grid-template-columns:1fr .7fr .6fr .55fr .65fr;"><span>Agent</span><span>Zone</span><span>Heure</span><span>Durée</span><span>Statut</span></div>
+            <div class="gt-row" style="grid-template-columns:1fr .7fr .6fr .55fr .65fr;"><span>Sabah M.</span><span>Zone A</span><span>08:00</span><span>45 min</span><span><span class="sp sp-g">Conforme</span></span></div>
+            <div class="gt-row" style="grid-template-columns:1fr .7fr .6fr .55fr .65fr;background:rgba(232,197,71,.04);"><span>Youssef K.</span><span>Zone B</span><span>10:15</span><span>62 min</span><span><span class="sp sp-o">⚠ Alerte</span></span></div>
+            <div class="gt-row" style="grid-template-columns:1fr .7fr .6fr .55fr .65fr;"><span>Fatima L.</span><span>Zone C</span><span>14:30</span><span>41 min</span><span><span class="sp sp-g">Conforme</span></span></div>
+            <div style="padding:.3rem .7rem;background:var(--cream2);font-family:'Space Mono',monospace;font-size:.38rem;color:var(--muted);">10 fichiers VBA · Authentification par rôle · Safran SEPM</div>
+          </div>
+        </div>
+        <div class="fw2">
+          <div class="gw" style="width:135px;">
+            <div class="gtb"><div class="gtb-title">Power BI · DAX</div></div>
+            <div style="padding:.55rem .6rem;background:#fff;">
+              <div style="font-family:'Space Mono',monospace;font-size:.38rem;color:var(--muted);margin-bottom:.4rem;">Conformité — semaine</div>
+              <div style="display:flex;gap:3px;align-items:flex-end;height:50px;margin-bottom:.4rem;">
+                <div style="flex:1;background:var(--rose-pale);border-top:2px solid var(--rose-light);height:60%"></div>
+                <div style="flex:1;background:var(--rose-pale);border-top:2px solid var(--rose-light);height:82%"></div>
+                <div style="flex:1;background:var(--rose);height:55%"></div>
+                <div style="flex:1;background:var(--rose-pale);border-top:2px solid var(--rose-light);height:92%"></div>
+                <div style="flex:1;background:var(--rose-pale);border-top:2px solid var(--rose-light);height:70%"></div>
+              </div>
+              <div style="font-family:'Space Mono',monospace;font-size:.36rem;color:var(--muted);">18 mesures DAX · 4 pages</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-label">SAFRONDE · CONTRÔLE DES RONDES · CONTINUITÉ D'aCTIVITÉ</div>
+    </div>
+    <div class="mc">
+      <div class="mc-sector">Sûreté Industrielle · Safran SEPM · Chef de Projet </div>
+      <div class="mc-title">SafRonde</div>
+      <div class="mc-sub">Digitalisation complète de la gestion des rondes de sécurité · Fév. 2026 - Avr. 2026</div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="mc-n">0→1</div><div class="mc-l">De rien à opérationnel</div></div>
+        <div class="mc-stat"><div class="mc-n">100%</div><div class="mc-l">Rondes tracées & auditées</div></div>
+        <div class="mc-stat"><div class="mc-n">3 rôles</div><div class="mc-l">Gérés & sécurisés</div></div>
+      </div>
+      <div class="mc-body">
+        <div>
+          <div class="mc-bt">Le problème identifié</div>
+          <p class="mc-txt">Le département gérait ses rondes sur papier sans aucune traçabilité, aucune alerte, aucun rapport. J'ai identifié ce besoin dès mon arrivée et proposé une solution complète.</p>
+          <div class="mc-bt" style="margin-top:1rem;">Les décisions clés</div>
+          <ul class="mc-buls">
+            <li>Choix Excel VBA pour zéro coût et adoption immédiate par les agents</li>
+            <li>Architecture 3 niveaux d'accès pour respecter la hiérarchie terrain</li>
+            <li>Alertes automatiques sur durées anormales</li>
+            <li>Dashboard Power BI pour visibilité du management en temps réel</li>
+          </ul>
+        </div>
+        <div>
+          <div class="mc-bt">L'impact réel</div>
+          <p class="mc-txt">100% de rondes tracée depuis le déploiement. Le Responsable dispose d'un tableau de bord en temps réel. Les agents ont adopté la solution sans formation lourde parce que la conception était pensée pour eux.</p>
+          <div class="mc-bt" style="margin-top:1rem;">Ce que ça révèle</div>
+          <p class="mc-txt">Capacité à identifier un problème opérationnel, concevoir une solution adaptée aux contraintes du terrain, et la livrer de bout en bout en autonomie complète.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL VIREON ═══ -->
+<div class="modal-ov" id="m-vi">
+  <div class="mbox">
+    <button class="mcl" onclick="closeM('vi')">✕</button>
+    <div class="proto-scene" style="background:linear-gradient(135deg,#f0f7f4,var(--cream2));">
+      <div class="ps-blob" style="width:280px;height:280px;background:radial-gradient(circle,rgba(122,158,142,.1) 0%,transparent 65%);top:-60px;left:-40px;"></div>
+      <div class="ps-scan" style="background:linear-gradient(90deg,transparent 5%,rgba(122,158,142,.2) 50%,transparent 95%);"></div>
+      <div class="ps-br tl" style="border-color:rgba(122,158,142,.5);"></div><div class="ps-br tr" style="border-color:rgba(122,158,142,.5);"></div><div class="ps-br bl" style="border-color:rgba(122,158,142,.5);"></div><div class="ps-br br2" style="border-color:rgba(122,158,142,.5);"></div>
+      <div style="position:relative;z-index:10;display:flex;gap:1.2rem;align-items:flex-start;">
+        <div class="fw">
+          <div class="gw" style="width:310px;">
+            <div class="gtb"><div class="gtb-dots"><div class="gtb-dot" style="background:var(--sage)"></div><div class="gtb-dot" style="background:#a8c5b8"></div><div class="gtb-dot" style="background:#e8c547"></div></div><div class="gtb-title">VIREON · Green Mobility Platform</div><div></div></div>
+            <div style="display:flex;border-bottom:1px solid var(--border);background:var(--cream2);">
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--sage);border-bottom:2px solid var(--sage);background:#fff;">Carte</div>
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--muted);">Garages</div>
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--muted);">Chatbot IA</div>
+              <div style="padding:.28rem .7rem;font-family:'Space Mono',monospace;font-size:.4rem;color:var(--muted);">Marketplace</div>
+            </div>
+            <div style="height:108px;background:linear-gradient(135deg,#eef4f1,#f5f9f7);position:relative;overflow:hidden;">
+              <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 310 108" fill="none" preserveAspectRatio="none">
+                <line x1="0" y1="36" x2="310" y2="36" stroke="#dde8e4" stroke-width="2.5"/><line x1="0" y1="72" x2="310" y2="72" stroke="#dde8e4" stroke-width="2.5"/>
+                <line x1="65" y1="0" x2="65" y2="108" stroke="#dde8e4" stroke-width="2.5"/><line x1="155" y1="0" x2="155" y2="108" stroke="#dde8e4" stroke-width="2.5"/><line x1="245" y1="0" x2="245" y2="108" stroke="#dde8e4" stroke-width="2.5"/>
+                <circle cx="65" cy="36" r="7" fill="#7a9e8e" opacity=".9"/><circle cx="65" cy="36" r="13" fill="#7a9e8e" opacity=".15"/>
+                <circle cx="155" cy="72" r="7" fill="#7a9e8e" opacity=".9"/><circle cx="155" cy="72" r="13" fill="#7a9e8e" opacity=".15"/>
+                <circle cx="245" cy="36" r="7" fill="#7a9e8e" opacity=".9"/><circle cx="245" cy="36" r="13" fill="#7a9e8e" opacity=".15"/>
+                <circle cx="125" cy="54" r="5" fill="#c46b72"/><circle cx="125" cy="54" r="9" fill="#c46b72" opacity=".2"/>
+              </svg>
+            </div>
+            <div style="padding:.35rem .7rem;display:flex;flex-direction:column;gap:.22rem;">
+              <div style="display:flex;justify-content:space-between;"><span style="font-family:'Space Mono',monospace;font-size:.42rem;color:var(--ink);">Borne Hassan II</span><span class="sp sp-g">Dispo · 0.4 km</span></div>
+              <div style="display:flex;justify-content:space-between;"><span style="font-family:'Space Mono',monospace;font-size:.42rem;color:var(--ink);">Borne Moulay Youssef</span><span class="sp sp-o">Occupée · 1.2 km</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="fw2">
+          <div class="gw" style="width:138px;">
+            <div class="gtb" style="background:#0d1a16;"><div class="gtb-title" style="color:rgba(168,197,184,.6);">Chatbot IA</div></div>
+            <div style="padding:.5rem .55rem;background:#fff;display:flex;flex-direction:column;gap:.35rem;">
+              <div style="background:var(--cream2);border-radius:0 5px 5px 5px;padding:.25rem .4rem;font-family:'Space Mono',monospace;font-size:.38rem;color:var(--muted);">Trouver une borne ?</div>
+              <div style="background:var(--sage);border-radius:5px 0 5px 5px;padding:.25rem .4rem;font-family:'Space Mono',monospace;font-size:.38rem;color:#fff;align-self:flex-end;">3 bornes à 500m ↗</div>
+              <div style="background:var(--cream2);border-radius:0 5px 5px 5px;padding:.25rem .4rem;font-family:'Space Mono',monospace;font-size:.38rem;color:var(--muted);">Garage certifié ?</div>
+              <div style="background:var(--sage);border-radius:5px 0 5px 5px;padding:.25rem .4rem;font-family:'Space Mono',monospace;font-size:.38rem;color:#fff;align-self:flex-end;">2 garages proches ↗</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-label" style="color:rgba(122,158,142,.45);">VIREON · GREEN MOBILITY · ÉQUIPE DE 5</div>
+    </div>
+    <div class="mc">
+      <div class="mc-sector">Green Mobility · Startup · Maroc · Cheffe de Projet</div>
+      <div class="mc-title">VIREON</div>
+      <div class="mc-sub">Plateforme de mobilité verte · Équipe de 5 · Oct. 2024 — Présent</div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="mc-n">5</div><div class="mc-l">Personnes encadrées</div></div>
+        <div class="mc-stat"><div class="mc-n">4</div><div class="mc-l">Modules arbitrés</div></div>
+        <div class="mc-stat"><div class="mc-n">1 pitch</div><div class="mc-l">ENSAM 2025</div></div>
+      </div>
+      <div class="mc-body">
+        <div>
+          <div class="mc-bt">L'opportunité saisie</div>
+          <p class="mc-txt">Aucune plateforme unifiée n'existait pour les conducteurs EV au Maroc. J'ai structuré le projet, constitué l'équipe et défini les 4 modules prioritaires par approche Design Thinking.</p>
+          <div class="mc-bt" style="margin-top:1rem;">Mon rôle concret</div>
+          <ul class="mc-buls">
+            <li>Définition de la vision produit et de la roadmap</li>
+            <li>Arbitrage des fonctionnalités selon la valeur utilisateur</li>
+            <li>Coordination hebdomadaire des 4 membres</li>
+            <li>Pitch devant jury ENSAM Journée Innovation</li>
+          </ul>
+        </div>
+        <div>
+          <div class="mc-bt">Ce que ça révèle</div>
+          <p class="mc-txt">Initiative entrepreneuriale, leadership d'équipe pluridisciplinaire, et capacité à porter un projet de la vision jusqu'au pitch — avec méthode.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL AI.HTIAL ═══ -->
+<div class="modal-ov" id="m-ai">
+  <div class="mbox">
+    <button class="mcl" onclick="closeM('ai')">✕</button>
+    <div class="proto-scene" style="background:linear-gradient(135deg,#faf7f2,#f8f4f0);">
+      <div class="ps-blob" style="width:280px;height:280px;background:radial-gradient(circle,rgba(196,107,114,.08) 0%,transparent 65%);top:-60px;right:-40px;"></div>
+      <div class="ps-scan"></div>
+      <div class="ps-br tl"></div><div class="ps-br tr"></div><div class="ps-br bl"></div><div class="ps-br br2"></div>
+      <div style="position:relative;z-index:10;display:flex;gap:1.4rem;align-items:flex-start;">
+        <div class="fw">
+          <div class="gw" style="width:340px;">
+            <div class="gtb"><div class="gtb-dots"><div class="gtb-dot" style="background:var(--rose)"></div><div class="gtb-dot" style="background:var(--warm)"></div><div class="gtb-dot" style="background:var(--sage)"></div></div><div class="gtb-title">AI.HTIAL · Fraud Detection Dashboard</div><div></div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border);">
+              <div class="mc2"><div class="mc2-n" style="color:var(--ink);">1 284</div><div class="mc2-l">Transactions</div></div>
+              <div class="mc2"><div class="mc2-n" style="color:var(--rose);">7</div><div class="mc2-l">Fraudes bloquées</div></div>
+              <div class="mc2"><div class="mc2-n" style="color:var(--sage);">94.7%</div><div class="mc2-l">Précision IA</div></div>
+            </div>
+            <div class="gt-head" style="grid-template-columns:.55fr 1fr .5fr .65fr;"><span>ID</span><span>Montant</span><span>Score</span><span>Statut</span></div>
+            <div class="gt-row" style="grid-template-columns:.55fr 1fr .5fr .65fr;"><span>TX-9921</span><span>14 832 MAD</span><span style="color:var(--rose);font-weight:600;">94%</span><span><span class="sp sp-r">⚠ Bloquée</span></span></div>
+            <div class="gt-row" style="grid-template-columns:.55fr 1fr .5fr .65fr;"><span>TX-9920</span><span>320 MAD</span><span style="color:var(--sage);">3%</span><span><span class="sp sp-g">✓ Validée</span></span></div>
+            <div class="gt-row" style="grid-template-columns:.55fr 1fr .5fr .65fr;"><span>TX-9919</span><span>8 450 MAD</span><span style="color:var(--warm);">71%</span><span><span class="sp sp-o">Vérif.</span></span></div>
+            <div style="padding:.3rem .7rem;background:var(--cream2);font-family:'Space Mono',monospace;font-size:.36rem;color:var(--muted);">React · Python · Machine Learning</div>
+          </div>
+        </div>
+        <div class="fw2">
+          <div class="gw" style="width:130px;">
+            <div class="gtb"><div class="gtb-title">Score · TX-9921</div></div>
+            <div style="padding:.6rem .5rem;background:#fff;display:flex;flex-direction:column;align-items:center;gap:.4rem;">
+              <svg width="90" height="55" viewBox="0 0 100 60">
+                <path d="M10 55 A40 40 0 0 1 90 55" stroke="#e0d8ce" stroke-width="9" fill="none" stroke-linecap="round"/>
+                <path d="M10 55 A40 40 0 0 1 90 55" stroke="#c46b72" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="126" stroke-dashoffset="8"/>
+                <text x="50" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#c46b72">94%</text>
+              </svg>
+              <div style="font-family:'Space Mono',monospace;font-size:.4rem;color:var(--rose);text-align:center;">RISQUE ÉLEVÉ</div>
+              <div style="font-family:'Space Mono',monospace;font-size:.36rem;color:var(--muted);text-align:center;">Blocage auto</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-label">AI.HTIAL · DÉTECTION DE FRAUDE BANCAIRE</div>
+    </div>
+    <div class="mc">
+      <div class="mc-sector">Fintech · Innovation · Sécurité Bancaire · Maroc</div>
+      <div class="mc-title">AI.HTIAL</div>
+      <div class="mc-sub">Système de détection de fraude bancaire · Portée seule de A à Z · Août 2025 — Présent</div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="mc-n">Solo</div><div class="mc-l">Vision → Livraison</div></div>
+        <div class="mc-stat"><div class="mc-n">Temps réel</div><div class="mc-l">Détection & blocage</div></div>
+        <div class="mc-stat"><div class="mc-n">94.7%</div><div class="mc-l">Précision du modèle</div></div>
+      </div>
+      <div class="mc-body">
+        <div>
+          <div class="mc-bt">Le problème adressé</div>
+          <p class="mc-txt">La fraude bancaire coûte des milliards aux banques marocaines. J'ai identifié l'opportunité, défini le périmètre fonctionnel et conçu une solution de bout en bout — sans équipe, sans budget.</p>
+          <div class="mc-bt" style="margin-top:1rem;">Les choix stratégiques</div>
+          <ul class="mc-buls">
+            <li>Analyse des besoins métier avant tout choix technique</li>
+            <li>Définition des critères de détection avec scoring de risque</li>
+            <li>Interface pensée pour les équipes compliance</li>
+            <li>Blocage automatique avec délai de réaction nul</li>
+          </ul>
+        </div>
+        <div>
+          <div class="mc-bt">Ce que ça révèle</div>
+          <p class="mc-txt">Ce projet ne démontre pas que je sais coder. Il démontre que je suis capable de définir un besoin, concevoir une solution et livrer. Seule. C'est le profil d'un Chef de Projet qui n'attend pas qu'on lui dise quoi faire.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL WIKI ═══ -->
+<div class="modal-ov" id="m-wk">
+  <div class="mbox">
+    <button class="mcl" onclick="closeM('wk')">✕</button>
+    <div class="proto-scene" style="background:linear-gradient(135deg,#f2f4f8,var(--cream2));">
+      <div class="ps-blob" style="width:260px;height:260px;background:radial-gradient(circle,rgba(42,108,140,.08) 0%,transparent 65%);top:-50px;left:-30px;"></div>
+      <div class="ps-scan" style="background:linear-gradient(90deg,transparent 5%,rgba(42,108,140,.2) 50%,transparent 95%);"></div>
+      <div class="ps-br tl" style="border-color:rgba(42,108,140,.5);"></div><div class="ps-br tr" style="border-color:rgba(42,108,140,.5);"></div><div class="ps-br bl" style="border-color:rgba(42,108,140,.5);"></div><div class="ps-br br2" style="border-color:rgba(42,108,140,.5);"></div>
+      <div style="position:relative;z-index:10;">
+        <div class="fw">
+          <div class="gw" style="width:500px;display:flex;flex-direction:column;">
+            <div class="gtb"><div class="gtb-dots"><div class="gtb-dot" style="background:var(--rose)"></div><div class="gtb-dot" style="background:#e8c547"></div><div class="gtb-dot" style="background:var(--sage)"></div></div><div class="gtb-title">WIKI-SÛRETÉ · Knowledge Management Platform · Offline</div><div style="font-family:'Space Mono',monospace;font-size:.36rem;color:rgba(250,247,242,.3);">● Hors-ligne</div></div>
+            <div style="display:flex;">
+              <div class="snav" style="padding:.3rem 0;">
+                <div style="font-family:'Space Mono',monospace;font-size:.35rem;color:var(--muted);padding:.25rem .55rem .35rem;text-transform:uppercase;letter-spacing:.1em;">Catégories</div>
+                <div class="snav-item a">Procédures</div>
+                <div class="snav-item">Fiches réflexe</div>
+                <div class="snav-item">Vidéos</div>
+                <div class="snav-item">Contacts urgence</div>
+                <div class="snav-item">Modes opératoires</div>
+                <div style="margin-top:.4rem;padding:.25rem .55rem;font-family:'Space Mono',monospace;font-size:.32rem;color:var(--muted);border-top:1px solid var(--border);">V1 HTML/JS<br>V2 HTML/C#</div>
+              </div>
+              <div style="flex:1;padding:.45rem .65rem;">
+                <div style="font-family:'Space Mono',monospace;font-size:.42rem;color:var(--rose);margin-bottom:.38rem;">PROCÉDURES · 12 documents</div>
+                <div style="display:flex;flex-direction:column;gap:.24rem;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:.28rem .42rem;background:var(--rose-pale);border-left:2px solid var(--rose);border-radius:0 2px 2px 0;"><span style="font-family:'Space Mono',monospace;font-size:.4rem;color:var(--ink);">Procédure accès site industriel</span><span class="sp sp-p">PDF</span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:.28rem .42rem;background:var(--cream2);border-radius:2px;"><span style="font-family:'Space Mono',monospace;font-size:.4rem;color:var(--ink);">Mode opératoire rondes nocturnes</span><span class="sp sp-g">PDF</span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:.28rem .42rem;background:var(--cream2);border-radius:2px;"><span style="font-family:'Space Mono',monospace;font-size:.4rem;color:var(--ink);">Gestion visiteurs & badges ALCEA</span><span class="sp sp-g">PDF</span></div>
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:.28rem .42rem;background:var(--cream2);border-radius:2px;"><span style="font-family:'Space Mono',monospace;font-size:.4rem;color:var(--ink);">Procédure levée de doute sécurité</span><span class="sp sp-g">PDF</span></div>
+                </div>
+                <div style="margin-top:.38rem;font-family:'Space Mono',monospace;font-size:.34rem;color:var(--muted);">Données JSON · Macros VBA · 100% hors-ligne</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-label" style="color:rgba(42,108,140,.4);">WIKI SÛRETÉ · KNOWLEDGE MANAGEMENT · CONTINUITÉ D'ACTIVITÉ</div>
+    </div>
+    <div class="mc">
+      <div class="mc-sector">Gestion du savoir opérationnel · Safran SEPM · Chef de Projet</div>
+      <div class="mc-title">WIKI SÛRETÉ</div>
+      <div class="mc-sub">Centralisation du savoir opérationnel d'un département · 3 versions · Fév. 2026 - Juil. 2026</div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="mc-n">100%</div><div class="mc-l">Savoir formalisé</div></div>
+        <div class="mc-stat"><div class="mc-n">2 versions</div><div class="mc-l">Adaptées aux usages</div></div>
+        <div class="mc-stat"><div class="mc-n">0</div><div class="mc-l">Dépendance réseau</div></div>
+      </div>
+      <div class="mc-body">
+        <div>
+          <div class="mc-bt">Le constat de départ</div>
+          <p class="mc-txt">Le département fonctionnait avec un savoir entièrement tacite. J'ai décidé de transformer ce capital immatériel en plateforme accessible à tous.</p>
+          <div class="mc-bt" style="margin-top:1rem;">Les décisions structurantes</div>
+          <ul class="mc-buls">
+            <li>Audit du savoir existant avant toute conception</li>
+            <li>Choix du 100% offline avce une contrainte terrain non négociable</li>
+            <li>3 versions pour toutes éventuelles contraintes</li>
+            <li>Réduction de l'empreunte carbone</li>
+          </ul>
+        </div>
+        <div>
+          <div class="mc-bt">L'impact organisationnel</div>
+          <p class="mc-txt">Tout agent peut accéder immédiatement aux procédures sans dépendre d'un collègue. Le département a réduit son risque de perte de savoir à zéro.</p>
+          <div class="mc-bt" style="margin-top:1rem;">Ce que ça révèle</div>
+          <p class="mc-txt">Amélioration de l'intégration et de l'autonomie des nouveaux collaborateurs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL LUXEUMA ═══ -->
+<div class="modal-ov" id="m-lx">
+  <div class="mbox">
+    <button class="mcl" onclick="closeM('lx')">✕</button>
+    <div class="proto-scene" style="background:linear-gradient(135deg,#fdf9f0,var(--cream2));">
+      <div class="ps-blob" style="width:260px;height:260px;background:radial-gradient(circle,rgba(200,168,76,.08) 0%,transparent 65%);top:-50px;left:-30px;"></div>
+      <div class="ps-scan"></div>
+      <div class="ps-br tl" style="border-color:rgba(200,168,76,.5);"></div><div class="ps-br tr" style="border-color:rgba(200,168,76,.5);"></div><div class="ps-br bl" style="border-color:rgba(200,168,76,.5);"></div><div class="ps-br br2" style="border-color:rgba(200,168,76,.5);"></div>
+      <div style="position:relative;z-index:10;display:flex;gap:1.4rem;align-items:flex-start;">
+        <div class="fw">
+          <div class="gw" style="width:320px;">
+            <div class="gtb"><div class="gtb-dots"><div class="gtb-dot" style="background:#c8a84c"></div><div class="gtb-dot" style="background:var(--rose)"></div><div class="gtb-dot" style="background:var(--sage)"></div></div><div class="gtb-title">LUXEUMA · Gestion commandes bijouterie</div><div></div></div>
+            <div class="gt-head" style="grid-template-columns:.4fr 1fr .65fr .65fr;"><span>#</span><span>Produit</span><span>Client</span><span>Statut</span></div>
+            <div class="gt-row" style="grid-template-columns:.4fr 1fr .65fr .65fr;"><span>142</span><span>Bague personnalisée</span><span>Leila B.</span><span><span class="sp sp-g">Livrée</span></span></div>
+            <div class="gt-row" style="grid-template-columns:.4fr 1fr .65fr .65fr;"><span>143</span><span>Collier argent 925</span><span>Sara M.</span><span><span class="sp sp-g">Livrée</span></span></div>
+            <div class="gt-row" style="grid-template-columns:.4fr 1fr .65fr .65fr;"><span>144</span><span>Bracelet doré</span><span>Nadia K.</span><span><span class="sp sp-o">En cours</span></span></div>
+            <div class="gt-row" style="grid-template-columns:.4fr 1fr .65fr .65fr;"><span>145</span><span>Boucles oreilles</span><span>Amina R.</span><span><span class="sp sp-p">Validée</span></span></div>
+            <div style="padding:.3rem .7rem;background:var(--cream2);font-family:'Space Mono',monospace;font-size:.36rem;color:var(--muted);">Équipe de 6 · Contact client · Logistique</div>
+          </div>
+        </div>
+        <div class="fw2">
+          <div class="gw" style="width:130px;">
+            <div class="gtb"><div class="gtb-title">Équipe · 6</div></div>
+            <div style="padding:.5rem .55rem;background:#fff;display:flex;flex-direction:column;gap:.3rem;">
+              <div style="font-family:'Space Mono',monospace;font-size:.38rem;color:var(--muted);">Agents actifs</div>
+              <div style="font-family:'Space Mono',monospace;font-size:.42rem;color:var(--ink);">Agent 1 · Contact</div>
+              <div style="font-family:'Space Mono',monospace;font-size:.42rem;color:var(--ink);">Agent 2 · Suivi</div>
+              <div style="font-family:'Space Mono',monospace;font-size:.42rem;color:var(--ink);">Agent 3 · Livraison</div>
+              <div style="font-family:'Space Mono',monospace;font-size:.42rem;color:var(--muted);">+ 3 agents</div>
+              <div style="height:1px;background:var(--border);margin:.15rem 0;"></div>
+              <div style="font-family:'Space Mono',monospace;font-size:.36rem;color:var(--muted);">CA mensuel</div>
+              <div style="height:3px;background:var(--border);border-radius:1px;overflow:hidden;"><div style="height:100%;width:72%;background:#c8a84c;border-radius:1px;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-label" style="color:rgba(200,168,76,.4);">LUXEUMA · SMALL BUSINESS BIJOUTERIE</div>
+    </div>
+    <div class="mc">
+      <div class="mc-sector">Entrepreneuriat · Commerce · Leadership · 2021</div>
+      <div class="mc-title">LUXEUMA</div>
+      <div class="mc-sub">Création et pilotage d'une structure commerciale · Équipe de 6 · 2021 — 2023</div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="mc-n">6</div><div class="mc-l">Personnes managées</div></div>
+        <div class="mc-stat"><div class="mc-n">2021</div><div class="mc-l">Lancé dès 18 ans</div></div>
+        <div class="mc-stat"><div class="mc-n">2 ans</div><div class="mc-l">En opération</div></div>
+      </div>
+      <div class="mc-body">
+        <div>
+          <div class="mc-bt">Ce que j'ai créé</div>
+          <p class="mc-txt">Avant tout cours de management, j'ai constitué une équipe, défini les rôles, mis en place un processus de commande et piloté l'activité. Pas par obligation — par choix et par ambition.</p>
+          <ul class="mc-buls">
+            <li>Recrutement et coordination d'une équipe de 6</li>
+            <li>Processus : contact → validation → fabrication → livraison</li>
+            <li>Résolution des problèmes quotidiens sans supervision</li>
+            <li>Satisfaction client comme priorité absolue</li>
+          </ul>
+        </div>
+        <div>
+          <div class="mc-bt">Ce que ça dit de moi</div>
+          <p class="mc-txt">Je n'ai pas attendu d'avoir un titre pour prendre des responsabilités. LUXEUMA prouve que le leadership, pour moi, est naturel — pas appris. C'est une disposition, pas une compétence acquise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL KA.US ═══ -->
+<div class="modal-ov" id="m-ka">
+  <div class="mbox">
+    <button class="mcl" onclick="closeM('ka')">✕</button>
+    <div class="proto-scene" style="background:linear-gradient(135deg,#fdf5f2,var(--cream2));">
+      <div class="ps-blob" style="width:260px;height:260px;background:radial-gradient(circle,rgba(196,107,114,.08) 0%,transparent 65%);top:-50px;right:-30px;"></div>
+      <div class="ps-scan"></div>
+      <div class="ps-br tl"></div><div class="ps-br tr"></div><div class="ps-br bl"></div><div class="ps-br br2"></div>
+      <div style="position:relative;z-index:10;display:flex;gap:1.4rem;align-items:flex-start;">
+        <div class="fw">
+          <div class="gw" style="width:325px;">
+            <div class="gtb"><div class="gtb-dots"><div class="gtb-dot" style="background:var(--rose)"></div><div class="gtb-dot" style="background:var(--rose-light)"></div><div class="gtb-dot" style="background:var(--warm)"></div></div><div class="gtb-title">KA.US BAKERY · Tableau de bord commandes</div><div></div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--border);">
+              <div class="mc2"><div class="mc2-n" style="color:var(--rose);">14</div><div class="mc2-l">Commandes</div></div>
+              <div class="mc2"><div class="mc2-n" style="color:var(--sage);">11</div><div class="mc2-l">Livrées</div></div>
+              <div class="mc2"><div class="mc2-n" style="color:var(--warm);">3</div><div class="mc2-l">En préparation</div></div>
+            </div>
+            <div class="gt-head" style="grid-template-columns:1fr .7fr .55fr;"><span>Produit</span><span>Client</span><span>Statut</span></div>
+            <div class="gt-row" style="grid-template-columns:1fr .7fr .55fr;"><span>Gâteau mariage · 4 étages</span><span>Fatima L.</span><span><span class="sp sp-g">Livré</span></span></div>
+            <div class="gt-row" style="grid-template-columns:1fr .7fr .55fr;"><span>24 Cupcakes anniversaire</span><span>Zineb A.</span><span><span class="sp sp-g">Livré</span></span></div>
+            <div class="gt-row" style="grid-template-columns:1fr .7fr .55fr;"><span>Entremet framboise</span><span>Khadija M.</span><span><span class="sp sp-o">En cours</span></span></div>
+            <div style="padding:.3rem .7rem;background:var(--cream2);font-family:'Space Mono',monospace;font-size:.36rem;color:var(--muted);">Livraisons · Satisfaction · Stocks</div>
+          </div>
+        </div>
+        <div class="fw2">
+          <div class="gw" style="width:130px;">
+            <div class="gtb"><div class="gtb-title">Planning semaine</div></div>
+            <div style="padding:.5rem .55rem;background:#fff;display:flex;flex-direction:column;gap:.28rem;">
+              <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.42rem;"><span style="color:var(--muted);">Lun</span><span style="color:var(--rose);">3 cmd</span></div>
+              <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.42rem;"><span style="color:var(--muted);">Mar</span><span style="color:var(--sage);">2 cmd</span></div>
+              <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.42rem;"><span style="color:var(--muted);">Mer</span><span style="color:var(--rose);">4 cmd</span></div>
+              <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.42rem;"><span style="color:var(--muted);">Jeu</span><span style="color:var(--sage);">2 cmd</span></div>
+              <div style="height:1px;background:var(--border);margin:.1rem 0;"></div>
+              <div style="font-family:'Space Mono',monospace;font-size:.36rem;color:var(--muted);">Satisfaction</div>
+              <div style="height:3px;background:var(--border);border-radius:1px;overflow:hidden;"><div style="height:100%;width:88%;background:var(--rose);border-radius:1px;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ps-label">KA.US BAKERY · SMALL BUSINESS PÂTISSERIE</div>
+    </div>
+    <div class="mc">
+      <div class="mc-sector">Entrepreneuriat · Multi-Projets · Gestion Opérationnelle</div>
+      <div class="mc-title">KA.US BAKERY</div>
+      <div class="mc-sub">Second projet mené en parallèle de LUXEUMA · 2021 — 2023</div>
+      <div class="mc-stats">
+        <div class="mc-stat"><div class="mc-n">2</div><div class="mc-l">Projets simultanés</div></div>
+        <div class="mc-stat"><div class="mc-n">100%</div><div class="mc-l">Gestion autonome</div></div>
+        <div class="mc-stat"><div class="mc-n">0</div><div class="mc-l">Supervision reçue</div></div>
+      </div>
+      <div class="mc-body">
+        <div>
+          <div class="mc-bt">Le défi unique</div>
+          <p class="mc-txt">Gérer deux projets avec des logiques différentes simultanément exige une organisation rigoureuse, des priorités claires et la capacité à changer de contexte rapidement.</p>
+          <ul class="mc-buls">
+            <li>Planification hebdomadaire des commandes et ressources</li>
+            <li>Coordination des livraisons et résolution des imprévus</li>
+            <li>Suivi personnalisé de chaque client</li>
+            <li>Gestion des stocks en anticipant la demande</li>
+          </ul>
+        </div>
+        <div>
+          <div class="mc-bt">Ce que ça révèle</div>
+          <p class="mc-txt">Gérer deux activités en parallèle sans perdre en qualité révèle une aptitude naturelle à la gestion multi-projets — exactement le profil d'un Chef de Projet capable de suivre plusieurs chantiers simultanément.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ MAIN CV ═══ -->
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="h-eyebrow">— Chef de Projet · Innovation · Transformation Digitale</div>
+    <h1 class="h-name">OUMAIMA<span class="last">Kayous</span></h1>
+    <p class="h-tagline">De la création de startups à la digitalisation industrielle chez Safran, je pilote des projets où l'innovation crée un impact réel.</p>
+    <div class="h-contacts">
+      <div class="h-contact"><span class="h-contact-dot"></span>oumaimakayous@gmail.com</div>
+      <div class="h-contact"><span class="h-contact-dot"></span>+212 639 572 597</div>
+      <div class="h-contact"><span class="h-contact-dot"></span>linkedin.com/in/oumaima-kayous-97b094218</div>
+      <div class="h-contact"><span class="h-contact-dot"></span>Témara, Maroc</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-n">8+</div><div class="stat-l">Projets pilotés</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><div class="stat-n">10</div><div class="stat-l">Fichiers VBA interconnectés</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><div class="stat-n">100%</div><div class="stat-l">Continuité d'activité assurée</div></div>
+  <div class="stat-div"></div>
+  <div class="stat-item"><div class="stat-n">2021</div><div class="stat-l">1ère startup lancée</div></div>
+</div>
+
+<!-- À PROPOS -->
+<section class="section reveal" style="background:var(--cream2);overflow:hidden;position:relative;">
+  <div style="position:absolute;right:-.05em;top:-.1em;font-family:'Cormorant Garamond',serif;font-size:clamp(12rem,25vw,22rem);font-weight:700;color:rgba(196,107,114,.04);line-height:1;pointer-events:none;user-select:none;">OK</div>
+  <div class="sec-label">00 — À Propos</div>
+  <div class="about-grid">
+    <div>
+      <div class="about-quote">"Je ne construis pas des outils.<br>Je construis des <span>solutions</span> qui<br>changent la façon dont<br>les équipes <span>travaillent.</span>"</div>
+      <div class="about-line"></div>
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.8;">Master MIT · ENSAM Rabat · Safran Electrical & Power Morocco</p>
+    </div>
+    <div>
+      <div class="dna-row">
+        <div class="dna-icon" style="border:1.5px solid var(--rose);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c46b72" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div><div class="dna-title" style="color:var(--rose);">Transformation Digitale</div><div class="dna-text">Je digitalise des processus complexes et les rends simples, adoptables, durables.</div></div>
+      </div>
+      <div class="dna-row">
+        <div class="dna-icon" style="border:1.5px solid var(--sage);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a9e8e" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div><div class="dna-title" style="color:var(--sage);">Innovation Orientée Impact</div><div class="dna-text">+5 projets pilotés. Chacun répondant à un besoin réel. De la détection de fraude à la mobilité verte, j'innove avec intention.</div></div>
+      </div>
+      <div class="dna-row">
+        <div class="dna-icon" style="border:1.5px solid var(--warm);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b7355" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div><div class="dna-title" style="color:var(--warm);">Leadership Naturel</div><div class="dna-text">Dès 2021 j'encadrais une équipe de 6. Le leadership pour moi, c'est créer les conditions de la réussite collective.</div></div>
+      </div>
+      <div class="dna-row" style="border-bottom:none;">
+        <div class="dna-icon" style="border:1.5px solid var(--rose-light);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8a0a6" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div><div class="dna-title" style="color:var(--rose-light);">Profil Multidimensionnel</div><div class="dna-text">Économiste de formation, entrepreneuse par nature. Je comprends la stratégie ET l'exécution, et je parle les deux langues.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPÉRIENCES -->
+<section class="section dark reveal">
+  <div class="sec-label">01 — Expérience Professionnelle</div>
+  <div class="sec-heading">Ce que<br>j'ai bâti</div>
+
+  <div class="exp-block">
+    <div class="exp-meta"><div class="ep">Fév. 2026 - Juil. 2026</div><div class="ec">Safran Electrical & Power Morocco<br>Département Sûreté · Témara</div></div>
+    <div>
+      <div class="exp-role">Chef de Projet<em>Sûreté et Continuité d'activité</em></div>
+      <p class="exp-hl">Deux systèmes opérationnels déployés sur site industriel aéronautique international en autonomie complète, du diagnostic et l'idéation à la clôture.</p>
+      <ul class="exp-buls">
+        <li>SafRonde : 10 fichiers Excel VBA interconnectés avec authentification + Power BI 4 pages, 18 mesures DAX, alertes, contrôle par rôle</li>
+        <li>WIKI SÛRETÉ : plateforme offline knowledge management avec 3 versions pour répondre aux contraintes</li>
+        <li>100% des procédures opérationnelles formalisées et digitalisées</li>
+        <li>Continuité d'activité garantie en cas de crise et d'imprévu</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="exp-div">
+  <div class="exp-block">
+    <div class="exp-meta"><div class="ep">Juil. — Août 2025</div><div class="ec">LabelVie · Rabat<br>Grande Distribution</div></div>
+    <div>
+      <div class="exp-role">HR Coordinator<em>Coordination multi-sites · Données RH</em></div>
+      <p class="exp-hl">Gestion des flux RH pour plusieurs magasins avec fiabilité des données et conformité des procédures.</p>
+      <ul class="exp-buls">
+        <li>Suivi opérationnel des dossiers collaborateurs multi-sites</li>
+        <li>Gestion des flux documentaires via systèmes internes</li>
+        <li>Traitement des informations RH à impact financier</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section class="section reveal">
+  <div class="sec-label">02 — Projets · Cliquez pour explorer</div>
+  <div class="sec-heading">Ce que<br>j'ai créé</div>
+  <div class="proj-grid">
+    <div class="proj-cell" onclick="openM('sf')">
+      <div class="pj-idx">001 · Sûreté Industrielle · Safran</div>
+      <div class="pj-name">SAFRONDE</div>
+      <div class="pj-stack">Excel VBA · Power BI · 10 fichiers · Auth</div>
+      <div class="pj-desc">Digitalisation des rondes de sécurité sur site aéronautique. Décidé, conçu et livré en autonomie complète.</div>
+      <div class="pj-cta">Explorer le prototype <span>→</span></div>
+    </div>
+    <div class="proj-cell" onclick="openM('vi')">
+      <div class="pj-idx">002 · Green Mobility · Startup</div>
+      <div class="pj-name">VIREON</div>
+      <div class="pj-stack">Cheffe de projet · Équipe de 5</div>
+      <div class="pj-desc">Plateforme EV : bornes, garages verts, chatbot IA, marketplace. Pitchée à la Journée Innovation ENSAM.</div>
+      <div class="pj-cta">Explorer le prototype <span>→</span></div>
+    </div>
+    <div class="proj-cell" onclick="openM('ai')">
+      <div class="pj-idx">003 · Fintech · IA · Solo</div>
+      <div class="pj-name">AI.HTIAL</div>
+      <div class="pj-stack">React · Python · Portée seule</div>
+      <div class="pj-desc">Détection de fraude bancaire par IA. Du besoin métier au livrable — seule, en autonomie totale.</div>
+      <div class="pj-cta">Explorer le prototype <span>→</span></div>
+    </div>
+    <div class="proj-cell" onclick="openM('wk')">
+      <div class="pj-idx">004 · Knowledge Management · Safran</div>
+      <div class="pj-name">WIKI-SÛRETÉ</div>
+      <div class="pj-stack">HTML · CSS · JS · C# · 100% offline</div>
+      <div class="pj-desc">Centralisation du savoir opérationnel d'un département. 100% des procédures formalisées. Zéro dépendance réseau.</div>
+      <div class="pj-cta">Explorer le prototype <span>→</span></div>
+    </div>
+    <div class="proj-cell" onclick="openM('lx')">
+      <div class="pj-idx">005 · Entrepreneuriat · Bijouterie</div>
+      <div class="pj-name">LUXEUMA</div>
+      <div class="pj-stack">Small Business · Équipe de 6 · 2021</div>
+      <div class="pj-desc">Bijouterie artisanale pilotée dès 2021. Management de 6 personnes, commandes, logistique, clients — avant toute formation.</div>
+      <div class="pj-cta">Explorer le prototype <span>→</span></div>
+    </div>
+    <div class="proj-cell" onclick="openM('ka')">
+      <div class="pj-idx">006 · Entrepreneuriat · Pâtisserie</div>
+      <div class="pj-name">KA.US BAKERY</div>
+      <div class="pj-stack">Small Business · Multi-projets · 2021</div>
+      <div class="pj-desc">Pâtisserie artisanale pilotée en parallèle de LUXEUMA. Preuve de gestion multi-projets en autonomie totale.</div>
+      <div class="pj-cta">Explorer le prototype <span>→</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFIL -->
+<section class="section reveal">
+  <div class="sec-label">03 — Profil</div>
+  <div class="sec-heading">Ce que<br>je maîtrise</div>
+  <div class="skills-grid">
+    <div>
+      <div class="sk-group">
+        <div class="sk-label">Pilotage & Méthodes</div>
+        <div class="sk-row"><div class="sl-name">Gestion de Projet</div><div class="sl-bar"><div class="sl-fill" style="width:88%"></div></div><div class="sk-pct">88%</div></div>
+        <div class="sk-row"><div class="sl-name">Design Thinking · Agile</div><div class="sl-bar"><div class="sl-fill" style="width:82%"></div></div><div class="sk-pct">82%</div></div>
+        <div class="sk-row"><div class="sl-name">RSE et Conduite de changement</div><div class="sl-bar"><div class="sl-fill" style="width:90%"></div></div><div class="sk-pct">90%</div></div>
+        <div class="sk-row"><div class="sl-name">ClickUp · Trello · Notion</div><div class="sl-bar"><div class="sl-fill" style="width:85%"></div></div><div class="sk-pct">85%</div></div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-label">Outils Digitaux</div>
+        <div class="sk-row"><div class="sl-name">Excel VBA et  Macros</div><div class="sl-bar"><div class="sl-fill" style="width:62%"></div></div><div class="sk-pct">62%</div></div>
+        <div class="sk-row"><div class="sl-name">Power BI et  DAX</div><div class="sl-bar"><div class="sl-fill" style="width:55%"></div></div><div class="sk-pct">55%</div></div>
+        <div class="sk-row"><div class="sl-name">HTML/CSS et C#</div><div class="sl-bar"><div class="sl-fill" style="width:70%"></div></div><div class="sk-pct">70%</div></div>
+        <div class="sk-row"><div class="sl-name">Suite Microsoft Office</div><div class="sl-bar"><div class="sl-fill" style="width:88%"></div></div><div class="sk-pct">88%</div></div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-label">Formation</div>
+        <div class="edu-card"><div class="edu-p">2024 - 2026</div><div class="edu-d">Master en Management l'Innovation et de la Technologies</div><div class="edu-s">ENSAM Rabat · UM5</div></div>
+        <div class="edu-card"><div class="edu-p">2024</div><div class="edu-d">Licence Économie & Gestion</div><div class="edu-s">FSJES Souissi · UM5 Rabat</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sk-group">
+        <div class="sk-label">Langues</div>
+        <div class="lang-row"><div class="lr-name">Arabe</div><div class="lr-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div><div class="lr-level">Maternelle</div></div>
+        <div class="lang-row"><div class="lr-name">Français</div><div class="lr-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div><div class="lr-level">Courant · C1</div></div>
+        <div class="lang-row"><div class="lr-name">Anglais</div><div class="lr-dots"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div><div class="ld"></div></div><div class="lr-level">Intermédiaire · B1</div></div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-label">Savoir-être · Cliquez pour en savoir plus</div>
+        <div class="soft-wrap">
+          <button class="soft-tag" data-key="leadership">Leadership</button>
+          <button class="soft-tag" data-key="creativite">Créativité</button>
+          <button class="soft-tag" data-key="proactivite">Proactivité</button>
+          <button class="soft-tag" data-key="coordination">Coordination</button>
+          <button class="soft-tag" data-key="autonomie">Autonomie</button>
+          <button class="soft-tag" data-key="innovation">Innovation</button>
+          <button class="soft-tag" data-key="communication">Communication</button>
+          <button class="soft-tag" data-key="adaptabilite">Adaptabilité</button>
+        </div>
+        <div class="soft-popup" id="softPopup"></div>
+      </div>
+      <div class="sk-group">
+        <div class="sk-label">Engagement</div>
+        <div class="edu-card" style="cursor:default"><div class="edu-d" style="font-size:.9rem">Club INextLab · ENSAM</div><div class="edu-s">Organisation d'événements innovation & entrepreneuriat</div></div>
+        <div class="edu-card" style="cursor:default;margin-top:.5rem"><div class="edu-d" style="font-size:.9rem">Coaching stratégique</div><div class="edu-s">Accompagnement de porteurs de projets incubés</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <div class="cta-pre">Ouverte aux opportunités</div>
+  <div class="cta-h">Parlons de<br><span>vos futurs projets</span></div>
+  <div class="postes">
+    <span class="poste">Chef de Projet Junior</span>
+    <span class="poste">Chef de Projet Innovation</span>
+    <span class="poste">Transformation Digitale</span>
+    <span class="poste">Chef de Projet Amélioration Continue</span>
+    <span class="poste">PMO</span>
+  </div>
+  <div class="cta-links">
+    <a class="cta-a" href="mailto:oumaimakayous@gmail.com">oumaimakayous@gmail.com</a>
+    <a class="cta-a" href="tel:+212639572597">+212 639 572 597</a>
+    <a class="cta-a" href="https://linkedin.com/in/oumaima-kayous-97b094218" target="_blank">LinkedIn</a>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function a(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.proj-cell,.soft-tag,.poste,.edu-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+/* LOADER */
+let n=0;
+const lp=document.getElementById('lpct'),lf=document.getElementById('lfill');
+const iv=setInterval(()=>{
+  n+=Math.floor(Math.random()*12)+3;
+  if(n>=100){n=100;clearInterval(iv);setTimeout(()=>document.getElementById('loader').classList.add('out'),400)}
+  lp.textContent=n; lf.style.width=n+'%';
+},80);
+
+/* SCROLL REVEAL */
+const rev=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');ro.unobserve(x.target)}}),{threshold:.07});
+rev.forEach(r=>ro.observe(r));
+
+/* SKILL BARS */
+const bars=document.querySelectorAll('.sl-fill');
+const bo=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');bo.unobserve(x.target)}}),{threshold:.3});
+bars.forEach(b=>bo.observe(b));
+
+/* MODALS */
+function openM(id){document.getElementById('m-'+id).classList.add('open');document.body.style.overflow='hidden'}
+function closeM(id){document.getElementById('m-'+id).classList.remove('open');document.body.style.overflow=''}
+document.querySelectorAll('.modal-ov').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)closeM(m.id.replace('m-',''))})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-ov.open').forEach(m=>closeM(m.id.replace('m-','')))});
+
+/* SOFT SKILLS */
+const softData={
+  leadership:"J'ai encadré des équipes dès 2021 avec LUXEUMA (6 personnes), puis une équipe de 4 chez VIREON. Chez Safran, j'ai piloté mes projets en autonomie face aux maîtres d'œuvre exigeants.",
+  creativite:"VIREON, AI.HTIAL, LUXEUMA, trois solutions nées d'une vision originale. Je cherche toujours l'angle innovant, que ce soit dans la conception d'un système ou dans la façon de pitcher une idée.",
+  proactivite:"Je n'attends pas qu'on me dise quoi faire. J'identifie les besoins et je propose des solutions complètes sans y être mandatée.",
+  coordination:"Coordonner des prestataires des équipes pluridisciplinaires, des livrables, des parties prenantes, c'est ce que j'ai fait sur chaque projet, du petit business au grand compte industriel.",
+  autonomie:"WIKI SÛRETÉ, AI.HTIAL, SAFRONDE ; des projets menés de A à Z, seule et sans supervision directe.",
+  innovation:"Je ne cherche pas à reproduire, je cherche à inventer. Chaque projet que j'ai mené répondait à un problème réel avec une approche nouvelle.",
+  communication:"De la présentation à des recruteurs au pitch devant les CODIRs, j'adapte mon discours à chaque audience.",
+  adaptabilite:"VBA un jour, C# le lendemain, pitch startup la semaine d'après. Je m'adapte aux contextes, aux outils et aux équipes avec la même sérénité."
+};
+let activeKey=null;
+document.querySelectorAll('.soft-tag').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const k=btn.dataset.key;
+    const popup=document.getElementById('softPopup');
+    if(activeKey===k){popup.classList.remove('show');popup.textContent='';btn.classList.remove('active');activeKey=null;}
+    else{document.querySelectorAll('.soft-tag').forEach(b=>b.classList.remove('active'));btn.classList.add('active');popup.textContent=softData[k];popup.classList.add('show');activeKey=k;}
+  });
+});
+</script>
+</body>
+</html>
